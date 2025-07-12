@@ -15,20 +15,15 @@ console.log("Завдання 1");
 // Категорія: Тварини
 // Кількість елементів: 4
 
-const firstLiRef = document.querySelectorAll("#categories > li");
-console.log(`У списку ${firstLiRef.length} категорії.`);
+const categoriesRef = document.querySelectorAll("#categories > li.item");
+console.log(`У списку ${categoriesRef.length} категорії.`);
 
-const titleRef = document.querySelectorAll("#categories > li > h2");
-const secondLiRef = document.querySelectorAll("#categories > li > ul > li");
-console.log(secondLiRef);
-
-
-console.log(`Категорія: ${titleRef[0].textContent}; Кількість елементів: ${secondLiRef.length}`);
-console.log(`Категорія: ${titleRef[1].textContent}; Кількість елементів: ${secondLiRef.length}`);
-console.log(`Категорія: ${titleRef[2].textContent}; Кількість елементів: ${secondLiRef.length}`);
-
-
-
+categoriesRef.forEach((category) => {
+  const title = category.querySelector("h2").textContent;
+  const itemsCount = category.querySelectorAll("ul > li").length;
+  console.log(`Категорія: ${title}`);
+  console.log(`Кількість елементів: ${itemsCount}`);
+});
 
 
 
@@ -54,26 +49,14 @@ const ingredientsRef = document.querySelector("#ingredients");
 
 const createLi = (item) => {
   const itemEl = document.createElement("li");
-  itemEl.textContent = `${item}`;
+  itemEl.textContent = item;
   return itemEl;
-  // const itemEl1 = document.createElement("li");
-  // itemEl1.textContent = `${item1}`;
-  // const itemEl2 = document.createElement("li");
-  // itemEl2.textContent = `${item2}`;
-  // const itemEl3 = document.createElement("li");
-  // itemEl3.textContent = `${item3}`;
-  // const itemEl4 = document.createElement("li");
-  // itemEl4.textContent = `${item4}`;
-  // const itemEl5 = document.createElement("li");
-  // itemEl5.textContent = `${item5}`;
-  // const itemEl6 = document.createElement("li");
-  // itemEl6.textContent = `${item6}`;
-  // return itemEl1, itemEl2, itemEl3, itemEl4, itemEl5, itemEl6;
 };
 
-ingredients.forEach((ingredient) => {
-  ingredientsRef.appendChild(createLi(ingredients));
-});
+const items = ingredients.map(createLi);
+
+// Додаємо всі елементи за одну операцію
+ingredientsRef.append(...items);
 
 
 
