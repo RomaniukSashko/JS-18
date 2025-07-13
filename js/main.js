@@ -55,7 +55,6 @@ const createLi = (item) => {
 
 const items = ingredients.map(createLi);
 
-// Додаємо всі елементи за одну операцію
 ingredientsRef.append(...items);
 
 
